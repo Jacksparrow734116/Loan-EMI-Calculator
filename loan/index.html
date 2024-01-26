@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form id="loanForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" oninput="validateEmail()" required>
+        <div class="error" id="emailError"></div>
+        <label for="mobile">Mobile No:</label>
+        <input type="tel" id="mobile" pattern="[0-9]{10}" oninput="validateMobileNumber()" required>
+        <div class="error" id="mobileNumberError"></div>
+        <label for="nationality">Nationality:</label>
+        <select id="nationality" required>
+            <option value="indian">Indian</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" onchange="calculateAge()" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="1" required oninput="validateAge()">
+        <div class="error" id="ageError"></div>
+        <label for="aadhar">Aadhaar Card Number:</label>
+        <input type="text" id="aadhar" pattern="[0-9]{12}" required>
+
+        <label for="address">Address:</label>
+        <textarea id="address" rows="1" required></textarea>
+
+        <label for="loanType">Type of Loan:</label>
+        <select id="loanType" required>
+            <option value="choose loan type">Choose Loan Type</option>
+            <option value="personal">Personal Loan</option>
+            <option value="home">Home Loan</option>
+        </select>
+
+        <div id="personalLoanInfo" style="display:none;">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName">
+
+            <label for="workExperience">Total Work Experience (Years):</label>
+            <input type="number" min="1" id="workExperience" oninput="validateExp()">
+            <div class="error" id="expError"></div>
+            <label for="annualSalary">Annual Salary:</label>
+            <input type="number" id="annualSalary">
+
+            <label for="interestRate">Interest Rate (%):</label>
+            <input type="number" id="interestRate" min="0" step="0.01" oninput="validateInterest()">
+            <div class="error" id="interestError"></div>
+            <label for="loanAmount">Loan Amount:</label>
+            <input type="number" id="loanAmount" oninput="validateAmount()">
+            <div class="error" id="amountError"></div>
+            <label for="loanDuration">Duration in Months:</label>
+            <select id="loanDuration">
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+            </select>
+        </div>
+
+        <div id="homeLoanInfo" style="display:none;">
+            <label for="propertySqft">Property Sqft:</label>
+            <input type="number" id="propertySqft">
+
+            <label for="builderName">Builder Name:</label>
+            <input type="text" id="builderName">
+
+            <label for="propertyValue">Property Value:</label>
+            <input type="number" id="propertyValue">
+
+            <label for="annualSalaryHome">Annual Salary:</label>
+            <input type="number" id="annualSalaryHome">
+
+            <label for="loanAmountHome">Loan Amount:</label>
+            <input type="number" id="loanAmountHome" oninput="validateAmount()">
+            <div class="error" id="homeAmountError"></div>
+            <label for="interestRate">Interest Rate (%):</label>
+            <input type="number" id="interestRatehome" min="0" step="0.01"oninput="validateInterest()" required>
+            <div class="error" id="homeInterestError"></div>
+            <label for="loanDurationHome">Duration in Months (6, 12, 24, 36):</label>
+            <select id="loanDurationHome">
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+            </select>
+        </div>
+        <div id="LoanEMICalculate" style="display:none;">
+            <label for="Loan EMI">Loan EMI :</label>
+            <input type="text" id="loanemi">
+            <label for="Total Interest">Total Interest</label>
+            <input type="text" id="TotalInterest">
+            <label for="Total Amount">Total Amount :</label>
+            <input type="text" id="amountotal">
+           
+        </div>
+
+        <button type="button" onclick="calculateEMI()">Submit</button>
+
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
